@@ -1,3 +1,8 @@
+---
+title: Obsidian Command Center
+theme: jekyll-theme-cayman
+---
+
 # 🌑 Obsidian Command Center
 
 **The Ultimate Design System for Home Assistant.**
