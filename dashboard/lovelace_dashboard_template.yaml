@@ -1,0 +1,386 @@
+title: Home
+background: "radial-gradient(ellipse at 0% 0%, #12121f 0%, #080810 60%)"
+views:
+  - title: Overview
+    path: overview
+    icon: mdi:home-variant
+    cards:
+      - type: custom:button-card
+        show_icon: false
+        show_name: false
+        custom_fields:
+          content: |
+            [[[
+              var h = new Date().getHours();
+              var g = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+              var time = new Date().toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+              var date = new Date().toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long'});
+              var pholeSt = hass.states['sensor.pi_hole_ads_percentage_blocked_today'];
+              var blockedSt = hass.states['sensor.pi_hole_ads_blocked_today'];
+              var pihole = pholeSt ? parseFloat(pholeSt.state).toFixed(1) : '—';
+              var blocked = blockedSt ? parseInt(blockedSt.state).toLocaleString() : '—';
+              function pill(c, lbl, val) {
+                return '<div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:50px;padding:9px 18px;white-space:nowrap;">'
+                  + '<div style="width:7px;height:7px;border-radius:50%;background:' + c + ';box-shadow:0 0 6px ' + c + ';flex-shrink:0;"></div>'
+                  + '<span style="font-size:0.8rem;color:#6b6b8a;">' + lbl + '</span>'
+                  + '<span style="font-size:0.88rem;font-weight:600;font-family:JetBrains Mono,monospace;color:#f0f0f8;">' + val + '</span>'
+                  + '</div>';
+              }
+              return '<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">'
+                + '<div>'
+                  + '<div style="font-family:JetBrains Mono,monospace;font-size:3.5rem;font-weight:700;letter-spacing:-3px;background:linear-gradient(135deg,#fff 0%,#8080b0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1;">' + time + '</div>'
+                  + '<div style="font-size:1rem;color:rgba(255,255,255,0.4);font-weight:300;margin-top:6px;">' + g + ', User</div>'
+                  + '<div style="font-size:0.72rem;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:0.12em;margin-top:3px;">' + date + '</div>'
+                + '</div>'
+                + '<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;">'
+                  + pill('#22c55e', 'Pi-hole', pihole + '%')
+                  + pill('#3b82f6', 'Blocked', blocked)
+                  + pill('#8b5cf6', 'Devices', '24')
+                + '</div>'
+              + '</div>';
+            ]]]
+        styles:
+          card:
+            - background: rgba(255,255,255,0.03)
+            - border: 1px solid rgba(255,255,255,0.07)
+            - border-radius: 20px
+            - padding: 24px 28px
+            - margin-bottom: 0
+          grid:
+            - grid-template-areas: '"content"'
+            - grid-template-columns: 1fr
+          custom_fields:
+            content:
+              - width: 100%
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        layout:
+          grid-template-columns: minmax(10px, 1fr) 1fr
+          grid-template-rows: 200px 1fr min-content
+          gap: 14px
+          padding: 0
+          margin-top: 14px
+        cards:
+          - type: custom:mini-media-player
+            entity: media_player.YOUR_PLAYER_1
+            name: Media Player 1
+            artwork: cover
+            background_color: true
+            hide:
+              power: false
+              source: false
+              prev: false
+              next: false
+              volume: false
+            card_mod:
+              style: |
+                ha-card {
+                  min-height: 200px !important;
+                  border-radius: 20px !important;
+                  border: 1px solid rgba(225,29,72,0.2) !important;
+                  overflow: hidden !important;
+                  background: rgba(26,10,18,0.95) !important;
+                }
+          - type: custom:mini-media-player
+            entity: media_player.YOUR_PLAYER_2
+            name: Media Player 2
+            artwork: cover
+            background_color: true
+            hide:
+              power: false
+              source: false
+              prev: false
+              next: false
+              volume: false
+            card_mod:
+              style: |
+                ha-card {
+                  min-height: 200px !important;
+                  border-radius: 20px !important;
+                  border: 1px solid rgba(225,29,72,0.2) !important;
+                  overflow: hidden !important;
+                  background: rgba(29,10,18,0.95) !important;
+                }
+          - type: custom:button-card
+            show_icon: false
+            show_name: false
+            custom_fields:
+              content: |
+                [[[
+                  var lockSt = hass.states['lock.YOUR_FRONT_DOOR'];
+                  var doorSt = hass.states['binary_sensor.YOUR_FRONT_DOOR_CONTACT'];
+                  var garageSt = hass.states['cover.YOUR_GARAGE_DOOR'];
+                  var motionSt = hass.states['binary_sensor.YOUR_FRONT_DOOR_MOTION'];
+                  var lock = lockSt ? lockSt.state : 'unknown';
+                  var door = doorSt ? doorSt.state : 'unknown';
+                  var garage = garageSt ? garageSt.state : 'unknown';
+                  var motion = motionSt ? motionSt.state : 'off';
+                  function row(icon, label, ok, yes, no, last) {
+                    return '<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;' + (last ? '' : 'border-bottom:1px solid rgba(255,255,255,0.05);') + '">'
+                      + '<span style="font-size:0.78rem;color:rgba(255,255,255,0.85);display:flex;align-items:center;gap:6px;">' + icon + ' ' + label + '</span>'
+                      + '<span style="font-size:0.73rem;font-weight:600;color:' + (ok ? '#22c55e' : '#ef4444') + '">' + (ok ? yes : no) + '</span>'
+                    + '</div>';
+                  }
+                  return '<div>'
+                    + '<div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#ec4899;font-weight:500;padding-bottom:8px;border-bottom:1px solid rgba(236,72,153,0.15);margin-bottom:2px;">SECURITY</div>'
+                    + row('🔒', 'Front Door', lock === 'locked', 'Locked', 'Unlocked', false)
+                    + row('🚪', 'Door Contact', door === 'off', 'Closed', 'Open', false)
+                    + row('🚗', 'Garage', garage === 'closed', 'Closed', 'Open', false)
+                    + row('👁', 'Entry Motion', motion !== 'on', 'Clear', 'Detected', true)
+                  + '</div>';
+                ]]]
+            styles:
+              card:
+                - background: rgba(236,72,153,0.06)
+                - border: 1px solid rgba(236,72,153,0.15)
+                - border-radius: 20px
+                - padding: 18px 20px
+                - min-height: 175px
+              grid:
+                - grid-template-areas: '"content"'
+                - grid-template-columns: 1fr
+                - align-content: start
+              custom_fields:
+                content:
+                  - width: 100%
+                  - text-align: left
+          - type: custom:button-card
+            entity: climate.YOUR_THERMOSTAT
+            show_icon: false
+            show_name: false
+            custom_fields:
+              content: |
+                [[[
+                  var temp = entity.attributes.current_temperature ? parseFloat(entity.attributes.current_temperature) : 72;
+                  var sp = entity.attributes.temperature ? entity.attributes.temperature : 72;
+                  var min = 60; var max = 90;
+                  var pct = Math.min(1, Math.max(0, (temp - min) / (max - min)));
+                  var r = 30; var circ = 2 * Math.PI * r; var arc = circ * 0.75;
+                  var fill = arc * pct;
+                  var modeMap = {heat:'🔥 Heat', cool:'❄️ Cool', heat_cool:'⚡ Auto', 'off':'— Off', fan_only:'💨 Fan'};
+                  var mode = modeMap[entity.state] || entity.state;
+                  return '<div>'
+                    + '<div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#8b5cf6;font-weight:500;padding-bottom:10px;border-bottom:1px solid rgba(139,92,246,0.15);margin-bottom:12px;">CLIMATE</div>'
+                    + '<div style="display:flex;align-items:center;gap:16px;">'
+                      + '<div style="position:relative;width:80px;height:80px;flex-shrink:0;">'
+                        + '<svg width="80" height="80" viewBox="0 0 80 80" style="transform:rotate(-135deg)">'
+                          + '<circle cx="40" cy="40" r="' + r + '" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="7" stroke-dasharray="' + arc + ' ' + circ + '" stroke-linecap="round"/>'
+                          + '<circle cx="40" cy="40" r="' + r + '" fill="none" stroke="#8b5cf6" stroke-width="7" stroke-dasharray="' + fill + ' ' + circ + '" stroke-linecap="round"/>'
+                        + '</svg>'
+                        + '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-family:JetBrains Mono,monospace;font-size:1.05rem;font-weight:700;line-height:1;">' + Math.round(temp) + '°</div>'
+                      + '</div>'
+                      + '<div>'
+                        + '<div style="color:#8b5cf6;font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">' + mode + '</div>'
+                        + '<div style="color:#6b6b8a;font-size:0.77rem;line-height:2.0;">Set: <span style="color:#f0f0f8;font-family:JetBrains Mono,monospace;">' + sp + '°</span><br>Now: <span style="color:#f0f0f8;font-family:JetBrains Mono,monospace;">' + Math.round(temp) + '°</span></div>'
+                      + '</div>'
+                    + '</div>'
+                  + '</div>';
+                ]]]
+            styles:
+              card:
+                - background: rgba(139,92,246,0.07)
+                - border: 1px solid rgba(139,92,246,0.2)
+                - border-radius: 20px
+                - padding: 18px 20px
+                - min-height: 175px
+              grid:
+                - grid-template-areas: '"content"'
+                - grid-template-columns: 1fr
+              custom_fields:
+                content:
+                  - width: 100%
+                  - text-align: left
+          - type: custom:button-card
+            entity: sensor.YOUR_NETWORK_SENSOR
+            show_icon: false
+            show_name: false
+            custom_fields:
+              content: |
+                [[[
+                  var pct = parseFloat(entity.state) || 0;
+                  var r = 28; var circ = 2 * Math.PI * r;
+                  var fill = circ * (pct / 100);
+                  var blockedSt = hass.states['sensor.YOUR_ADS_BLOCKED'];
+                  var querySt = hass.states['sensor.YOUR_DNS_QUERIES'];
+                  var clientSt = hass.states['sensor.YOUR_DNS_CLIENTS'];
+                  var switchSt = hass.states['switch.YOUR_NETWORK_SERVICE'];
+                  var blocked = blockedSt ? parseInt(blockedSt.state).toLocaleString() : '—';
+                  var queries = querySt ? parseInt(querySt.state).toLocaleString() : '—';
+                  var clients = clientSt ? clientSt.state : '—';
+                  var on = switchSt ? switchSt.state === 'on' : false;
+                  return '<div>'
+                    + '<div style="font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:#3b82f6;font-weight:500;padding-bottom:10px;border-bottom:1px solid rgba(59,130,246,0.15);margin-bottom:12px;">NETWORK</div>'
+                    + '<div style="display:flex;align-items:center;gap:14px;">'
+                      + '<div style="position:relative;width:72px;height:72px;flex-shrink:0;">'
+                        + '<svg width="72" height="72" viewBox="0 0 70 70" style="transform:rotate(-90deg)">'
+                          + '<circle cx="35" cy="35" r="' + r + '" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="7"/>'
+                          + '<circle cx="35" cy="35" r="' + r + '" fill="none" stroke="#3b82f6" stroke-width="7" stroke-dasharray="' + fill + ' ' + circ + '" stroke-linecap="round"/>'
+                        + '</svg>'
+                        + '<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;line-height:1.2;">'
+                          + '<div style="font-family:JetBrains Mono,monospace;font-size:0.9rem;font-weight:700;color:#3b82f6;">' + pct.toFixed(1) + '%</div>'
+                          + '<div style="font-size:0.5rem;color:#6b6b8a;text-transform:uppercase;letter-spacing:0.05em;">blocked</div>'
+                        + '</div>'
+                      + '</div>'
+                      + '<div style="font-size:0.77rem;color:#6b6b8a;line-height:1.9;">'
+                        + 'Queries: <span style="color:#f0f0f8;font-family:JetBrains Mono,monospace;">' + queries + '</span><br>'
+                        + 'Blocked: <span style="color:#f0f0f8;font-family:JetBrains Mono,monospace;">' + blocked + '</span><br>'
+                        + 'Clients: <span style="color:#f0f0f8;font-family:JetBrains Mono,monospace;">' + clients + '</span><br>'
+                        + 'Running : <span style="color:green;font-family:JetBrains Mono,monospace;">' + on + '</span>'
+                      + '</div>'
+                    + '</div>'
+                  + '</div>';
+                ]]]
+            styles:
+              card:
+                - background: rgba(59,130,246,0.07)
+                - border: 1px solid rgba(59,130,246,0.2)
+                - border-radius: 20px
+                - padding: 18px 20px
+                - min-height: 175px
+              grid:
+                - grid-template-areas: '"content"'
+                - grid-template-columns: 1fr
+              custom_fields:
+                content:
+                  - width: 100%
+                  - text-align: left
+      - type: custom:mushroom-title-card
+        title: Rooms
+        card_mod:
+          style: >
+            ha-card { background:transparent; box-shadow:none; padding:20px 0
+            6px; }
+
+            .title { font-size:0.65rem !important; letter-spacing:0.18em
+            !important; text-transform:uppercase !important; color:#6b6b8a
+            !important; font-weight:500 !important; }
+      - square: false
+        type: grid
+        columns: 3
+        cards:
+          - type: custom:button-card
+            entity: light.YOUR_ROOM_1_LIGHT
+            name: Room 1
+            icon: mdi:sofa-outline
+            tap_action:
+              action: navigate
+              navigation_path: /dashboard-path/room-1
+            custom_fields:
+              sub: Sonos · Lamp · TV
+              status: >-
+                [[[ var e=states['light.YOUR_ROOM_1_LIGHT']; return e&&e.state==='on'?'<span
+                style="color:#f59e0b;">● Active</span>':'<span
+                style="color:#6b6b8a;">Off</span>'; ]]]
+            styles:
+              card:
+                - background: rgba(245,158,11,0.07)
+                - border: 1px solid rgba(245,158,11,0.15)
+                - border-radius: 18px
+                - padding: 18px 14px 16px
+                - overflow: hidden
+              grid:
+                - grid-template-areas: '"icon" "name" "sub" "status"'
+                - justify-items: start
+              icon:
+                - color: "#f59e0b"
+                - width: 28px
+                - filter: drop-shadow(0 0 8px rgba(245,158,11,0.6))
+              name:
+                - font-size: 0.82rem
+                - font-weight: "600"
+                - margin-top: 40px
+              custom_fields:
+                sub:
+                  - font-size: 0.68rem
+                  - color: "#6b6b8a"
+                  - margin-top: 3px
+                status:
+                  - font-size: 0.68rem
+                  - margin-top: 6px
+      # Additional cards for rooms follow this pattern...
+      - type: custom:mushroom-title-card
+        title: Vacuums
+        card_mod:
+          style: >
+            ha-card { background:transparent; box-shadow:none; padding:20px 0
+            6px; }
+
+            .title { font-size:0.65rem !important; letter-spacing:0.18em
+            !important; text-transform:uppercase !important; color:#6b6b8a
+            !important; font-weight:500 !important; }
+      - square: false
+        type: grid
+        columns: 2
+        cards:
+          - type: custom:button-card
+            entity: vacuum.YOUR_VACUUM_1
+            show_icon: false
+            show_name: false
+            tap_action:
+              action: more-info
+            custom_fields:
+              content: |
+                [[[
+                  var s = entity.state;
+                  var bat = states['sensor.YOUR_VACUUM_1_BATTERY'].state;
+                  var c = s === 'cleaning' ? '#10b981' : s === 'docked' ? '#3b82f6' : '#6b6b8a';
+                  var sc = s === 'cleaning' ? '#10b981' : s === 'docked' ? '#3b82f6' : '#9ca3af';
+                  var sl = s.charAt(0).toUpperCase() + s.slice(1);
+                  var spin = s === 'cleaning' ? '<div style="position:absolute;inset:-2px;border-radius:50%;border:2px dashed rgba(255,255,255,0.15);animation:spin 4s linear infinite;"></div>' : '';
+                  return '<style>@keyframes spin{to{transform:rotate(360deg)}}</style>'
+                    + '<div style="display:flex;align-items:center;gap:14px;">'
+                      + '<div style="position:relative;width:54px;height:54px;border-radius:50%;border:2px solid ' + c + ';background:radial-gradient(circle at 35% 35%,rgba(255,255,255,0.06) 0%,transparent 60%);display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 0 16px -4px ' + c + ';flex-shrink:0;">' + spin + '🤖</div>'
+                      + '<div style="flex:1;">'
+                        + '<div style="font-size:0.85rem;font-weight:600;margin-bottom:4px;">RoboVac</div>'
+                        + '<div style="font-size:0.7rem;font-family:JetBrains Mono,monospace;background:rgba(255,255,255,0.07);border-radius:6px;padding:2px 8px;display:inline-flex;align-items:center;gap:4px;color:' + sc + ';">● ' + sl + '</div>'
+                        + '<div style="display:flex;align-items:center;gap:5px;margin-top:6px;font-size:0.7rem;color:#6b6b8a;">'
+                          + '<div style="width:32px;height:5px;background:#2a2a3d;border-radius:3px;overflow:hidden;"><div style="width:' + bat + '%;height:100%;background:' + c + ';border-radius:3px;"></div></div>'
+                          + '<span style="font-family:JetBrains Mono,monospace;">' + bat + '%</span>'
+                        + '</div>'
+                      + '</div>'
+                    + '</div>';
+                ]]]
+            styles:
+              card:
+                - background: rgba(16,185,129,0.07)
+                - border: 1px solid rgba(16,185,129,0.2)
+                - border-radius: 18px
+                - padding: 16px 18px
+              grid:
+                - grid-template-areas: '"content"'
+                - grid-template-columns: 1fr
+              custom_fields:
+                content:
+                  - width: 100%
+                  - text-align: left
+  - title: Security
+    path: security
+    icon: mdi:shield-lock-outline
+    cards:
+      - type: custom:mushroom-title-card
+        title: Security
+        subtitle: Access Control
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: lock.YOUR_LOCK
+            name: Front Door Lock
+            icon: mdi:door-closed-lock
+            tap_action:
+              action: perform-action
+              perform_action: lock.lock
+              target:
+                entity_id: lock.YOUR_LOCK
+              data:
+                code: "YOUR_CODE"
+            double_tap_action:
+              action: perform-action
+              perform_action: lock.unlock
+              target:
+                entity_id: lock.YOUR_LOCK
+              data:
+                code: "YOUR_CODE"
+            card_mod:
+              style: >
+                ha-card { background:rgba(236,72,153,0.07); border:1px solid
+                rgba(236,72,153,0.2); border-radius:18px; }

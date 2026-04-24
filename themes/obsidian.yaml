@@ -1,0 +1,253 @@
+# ============================================================
+# OBSIDIAN COMMAND CENTER THEME
+# Home Assistant Custom Theme
+# ============================================================
+#
+# INSTALL STEPS:
+# 1. Via SSH/File Editor, create the folder: /config/themes/
+# 2. Save this file as: /config/themes/obsidian.yaml
+# 3. In configuration.yaml, ensure you have:
+#       frontend:
+#         themes: !include_dir_merge_named themes
+# 4. Restart Home Assistant (Settings → System → Restart)
+# 5. Go to your Profile (bottom-left avatar) → Theme → select "Obsidian Command Center"
+#    OR set it per-dashboard: Dashboard edit → ⋮ → Theme
+# 6. Reload Lovelace (Settings → Dashboards → ⋮ → Reload resources)
+#
+# REQUIRES: card-mod HACS card (you already have this)
+# ============================================================
+
+"Obsidian Command Center":
+
+  # ── HA CORE COLOR TOKENS ──────────────────────────────────
+  primary-color:                "#3b82f6"
+  accent-color:                 "#f59e0b"
+  primary-background-color:     "#080810"
+  secondary-background-color:   "#0f0f1a"
+  card-background-color:        "#0f0f1a"
+  primary-text-color:           "#f0f0f8"
+  secondary-text-color:         "#6b6b8a"
+  disabled-text-color:          "#3a3a55"
+  divider-color:                "rgba(255,255,255,0.06)"
+  error-color:                  "#ef4444"
+  success-color:                "#22c55e"
+  warning-color:                "#f59e0b"
+  info-color:                   "#3b82f6"
+
+  # Sidebar
+  sidebar-background-color:     "#080810"
+  sidebar-text-color:           "#f0f0f8"
+  sidebar-icon-color:           "#6b6b8a"
+  sidebar-selected-text-color:  "#f0f0f8"
+  sidebar-selected-icon-color:  "#3b82f6"
+  sidebar-border-color:         "rgba(255,255,255,0.06)"
+
+  # Header / top bar
+  app-header-background-color:  "#080810"
+  app-header-text-color:        "#f0f0f8"
+  app-header-selection-bar-color: "#3b82f6"
+
+  # States
+  state-on-color:               "#f59e0b"
+  state-off-color:              "#3a3a55"
+  state-home-color:             "#22c55e"
+  state-not-home-color:         "#ef4444"
+  state-unavailable-color:      "#6b6b8a"
+  state-ok-color:               "#22c55e"
+  state-problem-color:          "#ef4444"
+
+  # Inputs / forms
+  input-fill-color:             "rgba(255,255,255,0.05)"
+  input-border-color:           "rgba(255,255,255,0.1)"
+  input-ink-color:              "#f0f0f8"
+  input-label-ink-color:        "#6b6b8a"
+  input-idle-line-color:        "rgba(255,255,255,0.1)"
+  input-hover-line-color:       "rgba(255,255,255,0.2)"
+  input-disabled-fill-color:    "rgba(255,255,255,0.02)"
+  input-disabled-ink-color:     "#3a3a55"
+  input-disabled-line-color:    "rgba(255,255,255,0.05)"
+
+  # Switches / toggles
+  switch-checked-button-color:  "#f0f0f8"
+  switch-checked-track-color:   "#3b82f6"
+  switch-unchecked-button-color: "#6b6b8a"
+  switch-unchecked-track-color: "#2a2a3d"
+
+  # Sliders
+  paper-slider-active-color:    "#3b82f6"
+  paper-slider-secondary-color: "rgba(59,130,246,0.3)"
+  paper-slider-container-color: "#2a2a3d"
+  paper-slider-knob-color:      "#3b82f6"
+
+  # Scrollbars
+  scrollbar-thumb-color:        "rgba(255,255,255,0.08)"
+
+  # Mushroom card tokens
+  mush-rgb-disabled:            "107, 107, 138"
+  mush-rgb-red:                 "239, 68, 68"
+  mush-rgb-pink:                "236, 72, 153"
+  mush-rgb-purple:              "139, 92, 246"
+  mush-rgb-deep-purple:         "109, 40, 217"
+  mush-rgb-indigo:              "99, 102, 241"
+  mush-rgb-blue:                "59, 130, 246"
+  mush-rgb-light-blue:          "6, 182, 212"
+  mush-rgb-cyan:                "6, 182, 212"
+  mush-rgb-teal:                "16, 185, 129"
+  mush-rgb-green:               "34, 197, 94"
+  mush-rgb-light-green:         "34, 197, 94"
+  mush-rgb-lime:                "132, 204, 22"
+  mush-rgb-yellow:              "234, 179, 8"
+  mush-rgb-amber:               "245, 158, 11"
+  mush-rgb-orange:              "249, 115, 22"
+  mush-rgb-deep-orange:         "234, 88, 12"
+  mush-rgb-brown:               "120, 83, 62"
+  mush-rgb-grey:                "107, 107, 138"
+  mush-rgb-blue-grey:           "100, 116, 139"
+
+  # Card border radius
+  mush-card-primary-font-size:        "14px"
+  mush-card-secondary-font-size:      "12px"
+  mush-card-primary-font-weight:      "600"
+  mush-card-secondary-font-weight:    "400"
+  mush-control-border-radius:         "12px"
+  mush-card-border-radius:            "18px"
+
+  # ── CARD-MOD GLOBAL STYLES ────────────────────────────────
+  # This is where the fonts, body background, and global
+  # visual polish get injected into every page
+  card-mod-theme: "Obsidian Command Center"
+
+  card-mod-root-yaml: |
+    .: |
+      /* ── LOAD FONTS ── */
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+      /* ── ROOT VARIABLES ── */
+      :root {
+        --font-primary:    'Outfit', sans-serif;
+        --font-mono:       'JetBrains Mono', monospace;
+        --bg:              #080810;
+        --surface:         #0f0f1a;
+        --glass:           rgba(255,255,255,0.04);
+        --glass-b:         rgba(255,255,255,0.08);
+        --text:            #f0f0f8;
+        --muted:           #6b6b8a;
+        --dim:             #2a2a3d;
+
+        /* Room accents */
+        --living:    #f59e0b;
+        --kitchen:   #10b981;
+        --bedroom:   #8b5cf6;
+        --conserv:   #06b6d4;
+        --hallway:   #f97316;
+        --entry:     #ec4899;
+        --garage:    #64748b;
+        --outside:   #22c55e;
+        --office:    #3b82f6;
+        --study:     #a78bfa;
+        --basement:  #94a3b8;
+        --media:     #e11d48;
+      }
+
+      /* ── GLOBAL TYPOGRAPHY ── */
+      body, ha-app-layout, home-assistant-main,
+      ha-sidebar, hui-root, .lovelace-container {
+        font-family: var(--font-primary) !important;
+      }
+
+      /* ── BODY BACKGROUND ── */
+      body {
+        background: var(--bg) !important;
+      }
+
+      /* Noise texture overlay */
+      home-assistant-main::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* ── SIDEBAR POLISH ── */
+      ha-sidebar {
+        background: rgba(8,8,16,0.95) !important;
+        border-right: 1px solid rgba(255,255,255,0.05) !important;
+        backdrop-filter: blur(20px);
+      }
+
+      /* ── TOP HEADER BAR ── */
+      .header {
+        background: rgba(8,8,16,0.8) !important;
+        backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar { width: 4px; height: 4px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+      /* ── TAB BAR ── */
+      paper-tabs, mwc-tab-bar {
+        background: transparent !important;
+      }
+      paper-tab {
+        font-family: var(--font-primary) !important;
+        font-size: 0.78rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.05em !important;
+      }
+
+      /* ── DIALOGS & EDITOR — solid backgrounds ── */
+      .mdc-dialog__surface,
+      ha-dialog .mdc-dialog__surface {
+        background: #0f0f1a !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 20px !important;
+        backdrop-filter: none !important;
+      }
+
+  card-mod-card-yaml: |
+    .: |
+      /* ── ALL CARDS GLOBAL STYLE ── */
+      ha-card {
+        font-family: 'Outfit', sans-serif !important;
+        border-radius: 18px !important;
+        transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1),
+                    box-shadow 0.2s ease,
+                    border-color 0.2s ease !important;
+      }
+      /* Hover lift only on dashboard, not in editor dialogs */
+      :host(:not([preview]):not([inert])) ha-card:hover {
+        transform: translateY(-2px);
+      }
+
+      /* ── SENSOR / ENTITY CARD VALUES ── */
+      .value, .primary, [class*="state"],
+      .reading, hui-sensor-card .value {
+        font-family: 'JetBrains Mono', monospace !important;
+      }
+
+      /* ── MUSHROOM TYPOGRAPHY ── */
+      mushroom-card-content .primary {
+        font-family: 'Outfit', sans-serif !important;
+        font-weight: 600 !important;
+      }
+      mushroom-card-content .secondary {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.75rem !important;
+      }
+
+      /* ── BUTTON CARD TYPOGRAPHY ── */
+      .name {
+        font-family: 'Outfit', sans-serif !important;
+      }
+
+      /* ── MEDIA PLAYER ── */
+      mini-media-player-artwork-cover,
+      .entity__info__name {
+        font-family: 'Outfit', sans-serif !important;
+      }
