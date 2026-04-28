@@ -9,7 +9,7 @@ theme: jekyll-theme-cayman
 
 ![Dashboard Preview](dashboard-preview.png)
 
-Welcome to the official repository for the Obsidian Command Center. This is a high-density, glassmorphic UI designed for those who want their smart home to feel like a pro-level OS.
+Welcome to the official repository for the Obsidian Command Center. This is a high-density, glassmorphic UI designed for those who want their smart home dashboard in HA to feel like a pro-level OS.
 
 ## ✨ Key Highlights
 
