@@ -62,11 +62,17 @@
   input-disabled-fill-color:    "rgba(255,255,255,0.02)"
   input-disabled-ink-color:     "#3a3a55"
   input-disabled-line-color:    "rgba(255,255,255,0.05)"
+  input-dropdown-icon-color:    "#f0f0f8"
   paper-listbox-color:          "#f0f0f8"
   paper-listbox-background-color: "#0f0f1a"
   paper-card-background-color:  "#0f0f1a"
   paper-dialog-background-color: "#0f0f1a"
   paper-item-background-color:  "#0f0f1a"
+
+  # HA 2026.4+ Modern Form Inputs (Matches iOS theme styling)
+  ha-color-form-background:     "#0f0f1a"
+  ha-color-form-background-hover: "rgba(255,255,255,0.05)"
+  ha-color-form-background-disabled: "rgba(255,255,255,0.02)"
 
   # Material / MWC Component overrides (Solid dark menus and popups)
   mdc-theme-surface:            "#0f0f1a"
