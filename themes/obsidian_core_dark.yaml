@@ -1,6 +1,6 @@
 # ============================================================
 # OBSIDIAN CORE DARK THEME
-# Home Assistant Core Portal Theme (Dark Theme with White Inputs/Black Text)
+# Home Assistant Core Portal Theme (Dark Theme with Dark Inputs/White Text)
 # ============================================================
 #
 # INSTALL STEPS:
@@ -52,33 +52,34 @@
   state-ok-color:               "#22c55e"
   state-problem-color:          "#ef4444"
 
-  # Inputs / forms (White background / Black text for absolute compatibility)
-  input-fill-color:             "#ffffff"
-  input-border-color:           "#cbd5e1"
-  input-ink-color:              "#000000"
-  input-label-ink-color:        "#475569"
-  input-idle-line-color:        "#94a3b8"
-  input-hover-line-color:       "#3b82f6"
-  input-disabled-fill-color:    "#f1f5f9"
-  input-disabled-ink-color:     "#94a3b8"
-  input-disabled-line-color:    "#cbd5e1"
-  paper-listbox-color:          "#000000"
-  paper-listbox-background-color: "#ffffff"
+  # Inputs / forms (Dark background / White text matching card surfaces)
+  input-fill-color:             "rgba(255,255,255,0.05)"
+  input-border-color:           "rgba(255,255,255,0.1)"
+  input-ink-color:              "#f0f0f8"
+  input-label-ink-color:        "#6b6b8a"
+  input-idle-line-color:        "rgba(255,255,255,0.1)"
+  input-hover-line-color:       "rgba(255,255,255,0.2)"
+  input-disabled-fill-color:    "rgba(255,255,255,0.02)"
+  input-disabled-ink-color:     "#3a3a55"
+  input-disabled-line-color:    "rgba(255,255,255,0.05)"
+  paper-listbox-color:          "#f0f0f8"
+  paper-listbox-background-color: "#0f0f1a"
 
-  # Material / MWC Component overrides
-  mdc-theme-surface:            "#ffffff"
-  mdc-theme-on-surface:         "#000000"
-  mdc-theme-text-primary-on-background: "#000000"
-  mdc-select-fill-color:        "#ffffff"
-  mdc-select-ink-color:         "#000000"
-  mdc-select-label-ink-color:   "#475569"
-  mdc-select-dropdown-icon-color: "#000000"
+  # Material / MWC Component overrides (Dark menus and popups)
+  mdc-theme-surface:            "#0f0f1a"
+  mdc-theme-on-surface:         "#f0f0f8"
+  mdc-theme-text-primary-on-background: "#f0f0f8"
+  mdc-select-fill-color:        "rgba(255,255,255,0.05)"
+  mdc-select-ink-color:         "#f0f0f8"
+  mdc-select-label-ink-color:   "#6b6b8a"
+  mdc-select-dropdown-icon-color: "#f0f0f8"
 
-  # Material Design 3 (MD3) design tokens
-  md-sys-color-surface:         "#ffffff"
-  md-sys-color-on-surface:      "#000000"
-  md-sys-color-surface-container: "#ffffff"
-  md-sys-color-surface-container-highest: "#ffffff"
+  # Material Design 3 (MD3) design tokens for modern HA core
+  md-sys-color-surface:         "#0f0f1a"
+  md-sys-color-on-surface:      "#f0f0f8"
+  md-sys-color-surface-container: "#0f0f1a"
+  md-sys-color-surface-container-high: "#0f0f1a"
+  md-sys-color-surface-container-highest: "#0f0f1a"
 
   # Switches / toggles
   switch-checked-button-color:  "#f0f0f8"
