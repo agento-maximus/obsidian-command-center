@@ -43,11 +43,13 @@ frontend:
 
 ---
 
-### 3️⃣ STEP 3: Upload the theme file
+### 3️⃣ STEP 3: Upload the theme files
 
-1. Copy the contents of the provided `obsidian.yaml` file.
-2. Create a new file inside your new folder: `/config/themes/obsidian.yaml`.
-3. Paste the content and save the file.
+1. Copy and upload all three theme files into your `/config/themes/` folder:
+   - **Obsidian Command Center** (Dashboard theme): [themes/obsidian.yaml](themes/obsidian.yaml)
+   - **Obsidian Core Dark** (Dark settings & helper theme): [themes/obsidian_core_dark.yaml](themes/obsidian_core_dark.yaml)
+   - **Obsidian Portal** (Light-slate settings & helper theme): [themes/obsidian_portal.yaml](themes/obsidian_portal.yaml)
+2. You should have three `.yaml` files in `/config/themes/`.
 
 ---
 
@@ -59,17 +61,19 @@ frontend:
 
 ---
 
-### 5️⃣ STEP 5: Apply the theme
+### 5️⃣ STEP 5: Apply the themes
 
-There are two ways to apply the theme:
+To get the absolute best experience across both your dashboards and Home Assistant portal screens, we recommend setting a dedicated portal theme for your profile and the Obsidian Command Center theme specifically on your dashboards.
 
-#### **Option A: Set as your default profile theme**
+#### **Option A: Set the Core theme for your user profile**
+*This styles all settings, helper configuration pages, developer tools, and main panels*
 
 1. Click your **avatar** (bottom left corner).
-2. Under **Theme**, select **Obsidian Command Center**.
+2. Under **Theme**, select **Obsidian Core Dark** (for a fully dark interface with dark dropdowns) OR **Obsidian Portal** (for a clean light slate theme with dark blue text).
 3. Click **Done**.
 
-#### **Option B: Set per-dashboard only**
+#### **Option B: Set the Dashboard theme specifically**
+*This keeps the gorgeous neon accents, glassmorphic UI, and white text for your cards on your visual dashboards*
 
 1. Open your specific dashboard.
 2. Click the **Edit** (pencil) icon.
