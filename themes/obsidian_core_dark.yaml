@@ -52,8 +52,8 @@
   state-ok-color:               "#22c55e"
   state-problem-color:          "#ef4444"
 
-  # Inputs / forms (Dark background / White text matching card surfaces)
-  input-fill-color:             "rgba(255,255,255,0.05)"
+  # Inputs / forms (Solid dark color matching core theme background)
+  input-fill-color:             "#0f0f1a"
   input-border-color:           "rgba(255,255,255,0.1)"
   input-ink-color:              "#f0f0f8"
   input-label-ink-color:        "#6b6b8a"
@@ -64,15 +64,21 @@
   input-disabled-line-color:    "rgba(255,255,255,0.05)"
   paper-listbox-color:          "#f0f0f8"
   paper-listbox-background-color: "#0f0f1a"
+  paper-card-background-color:  "#0f0f1a"
+  paper-dialog-background-color: "#0f0f1a"
+  paper-item-background-color:  "#0f0f1a"
 
-  # Material / MWC Component overrides (Dark menus and popups)
+  # Material / MWC Component overrides (Solid dark menus and popups)
   mdc-theme-surface:            "#0f0f1a"
   mdc-theme-on-surface:         "#f0f0f8"
   mdc-theme-text-primary-on-background: "#f0f0f8"
-  mdc-select-fill-color:        "rgba(255,255,255,0.05)"
+  mdc-select-fill-color:        "#0f0f1a"
   mdc-select-ink-color:         "#f0f0f8"
   mdc-select-label-ink-color:   "#6b6b8a"
   mdc-select-dropdown-icon-color: "#f0f0f8"
+  mdc-text-field-fill-color:    "#0f0f1a"
+  mdc-text-field-ink-color:     "#f0f0f8"
+  mdc-text-field-label-ink-color: "#6b6b8a"
 
   # Material Design 3 (MD3) design tokens for modern HA core
   md-sys-color-surface:         "#0f0f1a"
@@ -80,6 +86,8 @@
   md-sys-color-surface-container: "#0f0f1a"
   md-sys-color-surface-container-high: "#0f0f1a"
   md-sys-color-surface-container-highest: "#0f0f1a"
+  md-sys-color-surface-container-low: "#080810"
+  md-sys-color-surface-container-lowest: "#080810"
 
   # Switches / toggles
   switch-checked-button-color:  "#f0f0f8"
